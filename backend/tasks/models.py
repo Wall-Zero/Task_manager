@@ -6,7 +6,7 @@ class Task(models.Model):
     description = models.TextField(blank=True)
     priority = models.CharField(max_length=10, choices=TASK_PRIORITY_CHOICES, default='MEDIUM')
     status = models.CharField(max_length=20, choices=TASK_STATUS_CHOICES, default='PENDING')
-    total_time_minutes = models.IntegerField(default=0)
+    total_time_minutes = models.PositiveIntegerField(default=0)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
