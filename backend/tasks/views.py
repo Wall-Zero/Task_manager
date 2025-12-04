@@ -6,10 +6,11 @@ from .serializers import TaskSerializer, PomodoroSessionSerializer
 from django.utils import timezone
 
 class TaskViewSet(viewsets.ModelViewSet):
+    queryset = Task.objects.all()
     serializer_class = TaskSerializer
 
     def get_queryset(self):
-        queryset = Task.objects.all().order_by('-created_at')
+        queryset = super().get_queryset().order_by('-created_at')
         
         status = self.request.query_params.get('status', None)
         if status:
